@@ -57,12 +57,14 @@ jobs:
             echo "──────────────────────────────────────────"
             echo "  🔁  Health check"
             echo "──────────────────────────────────────────"
-            sleep 3
+            sleep 5
             HTTP=$(curl -sk -o /dev/null -w "%{http_code}" "http://127.0.0.1:${PORT}" || echo "000")
             if [[ "$HTTP" =~ ^(200|301|302|304)$ ]]; then
               echo "  ✅  Health check OK — HTTP $HTTP"
             else
               echo "  ⚠️   Health check a échoué (Code: $HTTP)"
+              echo "  📜  Logs du conteneur:"
+              sudo docker logs "$APP_NAME"
               exit 1
             fi
 
