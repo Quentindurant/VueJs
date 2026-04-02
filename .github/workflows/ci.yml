@@ -58,11 +58,12 @@ jobs:
             echo "  🔁  Health check"
             echo "──────────────────────────────────────────"
             sleep 3
-            HTTP=$(curl -sk -o /dev/null -w "%{http_code}" "http://localhost:${PORT}")
-            if [[ "$HTTP" =~ ^(200|301|302)$ ]]; then
+            HTTP=$(curl -sk -o /dev/null -w "%{http_code}" "http://127.0.0.1:${PORT}" || echo "000")
+            if [[ "$HTTP" =~ ^(200|301|302|304)$ ]]; then
               echo "  ✅  Health check OK — HTTP $HTTP"
             else
-              echo "  ⚠️   Health check : HTTP $HTTP"
+              echo "  ⚠️   Health check a échoué (Code: $HTTP)"
+              exit 1
             fi
 
             echo ""
