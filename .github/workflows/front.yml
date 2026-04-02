@@ -1,28 +1,21 @@
-name: 🚀 CI/CD — Deploy to VPS
+name: 🚀 Deploy Front (Vue.js)
 
 on:
   push:
     branches: [main]
+    paths: ['Front/**']
   workflow_dispatch:
 
 jobs:
   deploy:
-    name: Build & Deploy
+    name: Build & Deploy Front
     runs-on: ubuntu-latest
 
     steps:
-      # ─────────────────────────────────────────────────────
-      - name: "📦 [1/3] Checkout"
+      - name: "📦 Checkout"
         uses: actions/checkout@v4
 
-      # ─────────────────────────────────────────────────────
-      - name: "🔍 [2/3] Lint & Type check (optionnel)"
-        run: |
-          echo "Ajouter ici vos commandes de test/lint si besoin"
-          # npm ci && npm run lint && npm run type-check
-
-      # ─────────────────────────────────────────────────────
-      - name: "🚀 [3/3] Deploy on VPS via SSH"
+      - name: "🚀 Deploy on VPS via SSH"
         uses: appleboy/ssh-action@v1.0.3
         with:
           host:     ${{ secrets.VPS_HOST }}
@@ -47,7 +40,7 @@ jobs:
             echo "──────────────────────────────────────────"
             echo "  🐳  Rebuild de l'image Docker"
             echo "──────────────────────────────────────────"
-            sudo docker build -t "${APP_NAME}:latest" .
+            sudo docker build -t "${APP_NAME}:latest" ./Front
 
             echo "──────────────────────────────────────────"
             echo "  ♻️   Redémarrage via Docker"
@@ -65,11 +58,8 @@ jobs:
               echo "  ✅  Health check OK — HTTP $HTTP"
             else
               echo "  ⚠️   Health check a échoué (Code: $HTTP)"
-              echo "  📜  Logs du conteneur:"
               sudo docker logs "$APP_NAME"
               exit 1
             fi
 
-            echo ""
-            echo "  ✅  Déploiement terminé !"
-            echo "  📊  $(sudo docker ps -f name=$APP_NAME)"
+            echo "  ✅  Déploiement Front terminé !"
