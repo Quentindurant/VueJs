@@ -1,8 +1,11 @@
+
 <template>
     <div class="steps">
-        <component :is="steps[currentStep].component" />
-        <button @click="previousStep">Previous</button>
-        <button @click="nextStep">Next</button>
+        <Card>
+            <component :is="steps[currentStep].component" />
+            <Button @click="previousStep">Previous</Button>
+            <Button @click="nextStep">Next</Button>
+        </Card>
     </div>
 </template>
 
@@ -11,6 +14,8 @@
     import First from './stepForm/first.vue'
     import Second from './stepForm/second.vue'
     import Third from './stepForm/third.vue'
+    import { Card } from './ui/card'
+    import { Button } from './ui/button'
 
     const steps = [
         { name: 'first',  component: First },
