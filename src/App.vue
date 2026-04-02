@@ -1,6 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import Header from './components/partials/header.vue'
 import Footer from './components/partials/footer.vue'
 import Navbar from './components/partials/navbar.vue'
