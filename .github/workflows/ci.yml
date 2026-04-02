@@ -48,9 +48,11 @@ jobs:
             sudo docker build -t "${APP_NAME}:latest" .
 
             echo "──────────────────────────────────────────"
-            echo "  ♻️   Redémarrage via PM2"
+            echo "  ♻️   Redémarrage via Docker"
             echo "──────────────────────────────────────────"
-            pm2 restart "$APP_NAME" || pm2 start ~/ecosystem.${APP_NAME}.config.cjs
+            sudo docker stop "$APP_NAME" || true
+            sudo docker rm "$APP_NAME" || true
+            sudo docker run -d --restart unless-stopped --name "$APP_NAME" -p ${PORT}:80 "${APP_NAME}:latest"
 
             echo "──────────────────────────────────────────"
             echo "  🔁  Health check"
@@ -65,4 +67,4 @@ jobs:
 
             echo ""
             echo "  ✅  Déploiement terminé !"
-            echo "  📊  $(pm2 show $APP_NAME | grep -E 'status|restart')"
+            echo "  📊  $(sudo docker ps -f name=$APP_NAME)"
