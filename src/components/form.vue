@@ -26,9 +26,9 @@
     const currentStep = ref(0)
 
     const previousStep = () => {
-        if (currentStep.value > 0) currentStep.value--
+        currentStep.value--
     }
     const nextStep = () => {
-        if (currentStep.value < steps.length - 1) currentStep.value++
+        currentStep.value++
     }
 </script>
