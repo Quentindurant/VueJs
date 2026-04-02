@@ -9,7 +9,5 @@
 </template>
 
 <script setup>
-    import { Menubar } from './ui/menubar'
- 
-
+    import { Menubar } from '../ui/menubar'
 </script>
