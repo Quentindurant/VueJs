@@ -6,17 +6,19 @@ WORKDIR /app
 RUN apk add --no-cache python3 make g++
 
 COPY package*.json ./
-RUN npm ci --production
+# On installe TOUTES les dépendances (y compris tsx, nécessaire pour Prisma 7)
+RUN npm ci
 
 COPY . .
 
 # DATABASE_URL nécessaire au moment du build pour prisma generate
 ENV DATABASE_URL="file:./dev.db"
 
-# Génère le client Prisma et applique les migrations
+# Génère le client Prisma (émet des .ts avec Prisma 7) et crée la DB
 RUN npx prisma generate
 RUN npx prisma db push
 
 EXPOSE 3000
 
-CMD ["node", "app.js"]
+# tsx permet à Node de charger les fichiers .ts générés par Prisma 7
+CMD ["node", "--import", "tsx", "app.js"]
