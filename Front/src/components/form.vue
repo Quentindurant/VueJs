@@ -60,14 +60,6 @@
 
     const currentStep = ref(0)
 
-    const permission = await Notification.requestPermission()
-    if (Notification.permission === 'granted') {
-        new Notification('Produit créé !', {
-            body: `"${formData.title}" a bien été publié.`,
-            icon: '/favicon.ico', 
-        })
-    }
-
     const formData = reactive({
         title: '',
         price: '',
@@ -92,7 +84,7 @@
             if (!res.ok) throw new Error(data.error)
 
             if (Notification.permission === 'default') {
-                new Notification.requestPermission()
+                await Notification.requestPermission()
             }
             if (Notification.permission === 'granted') {
                 new Notification('Produit créé !', {
