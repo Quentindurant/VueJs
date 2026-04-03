@@ -1,12 +1,12 @@
 <template>
   <div class="max-w-5xl mx-auto px-6 py-12">
     <div class="mb-8">
-      <h1 class="text-3xl font-bold tracking-tight">Cours disponibles</h1>
-      <p class="mt-2 text-muted-foreground">Liste de tous les cours créés.</p>
+      <h1 class="text-3xl font-bold tracking-tight">Produits disponibles</h1>
+      <p class="mt-2 text-muted-foreground">Liste de tous les produits créés.</p>
     </div>
 
     <p v-if="loading" class="text-muted-foreground">Chargement...</p>
-    <p v-else-if="courses.length === 0" class="text-muted-foreground">Aucun cours trouvé.</p>
+    <p v-else-if="courses.length === 0" class="text-muted-foreground">Aucun produit trouvé.</p>
 
     <div v-else class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <Card v-for="course in courses" :key="course.id" class="flex flex-col justify-between p-6">

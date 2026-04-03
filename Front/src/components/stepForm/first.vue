@@ -1,7 +1,7 @@
 <template>
   <div class="space-y-3">
     <div>
-      <label class="text-sm font-medium leading-none">Nom du cours</label>
+      <label class="text-sm font-medium leading-none">Nom du produit</label>
       <p class="text-sm text-muted-foreground mt-1">Choisissez un titre clair et accrocheur.</p>
     </div>
     <input
