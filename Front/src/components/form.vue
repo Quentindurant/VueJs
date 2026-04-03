@@ -28,7 +28,7 @@
       <CardFooter class="justify-between gap-2">
         <Button variant="outline" @click="previousStep" :disabled="currentStep === 0">Précédent</Button>
         <Button v-if="currentStep < steps.length - 1" @click="nextStep">Suivant</Button>
-        <Button v-else @click="submit">Publier</Button>
+        <Button v-else @click="submit">Envoyer</Button>
       </CardFooter>
     </Card>
   </div>
