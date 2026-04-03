@@ -36,6 +36,11 @@
 - Les deux se connectent au VPS en SSH, font un `git pull`, rebuild l'image Docker, redémarrent le conteneur et vérifient que ça répond.
 - Le Front est déclenché seulement si les tests passent.
 
+## Cartographie
+
+Je t'ai fais une petite carto de déploiement (très vite fais donc pas hyper bien mais j'en avait besion pour etre ok avec ce que je voulait faire)
+![alt text](image.png)
+
 ---
 
 ## Ressources internes
