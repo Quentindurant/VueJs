@@ -10,9 +10,12 @@ RUN npm ci --production
 
 COPY . .
 
+# DATABASE_URL nécessaire au moment du build pour prisma generate
+ENV DATABASE_URL="file:./dev.db"
+
 # Génère le client Prisma et applique les migrations
 RUN npx prisma generate
-RUN npx prisma migrate deploy || npx prisma db push
+RUN npx prisma db push
 
 EXPOSE 3000
 
