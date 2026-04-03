@@ -43,6 +43,41 @@ Je t'ai fais une petite carto de déploiement (très vite fais donc pas hyper bi
 
 ---
 
+## Arborescence
+
+```text
+.
+├── Front/                        # Application Vue.js
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── form.vue          # Formulaire multi-étapes
+│   │   │   ├── partials/
+│   │   │   │   └── navbar.vue    # Barre de navigation
+│   │   │   ├── ui/               # Composants Shadcn UI
+│   │   │   └── __tests__/
+│   │   │       └── form.spec.js  # Tests Vitest
+│   │   ├── views/                # Pages (HomeView, Contact, Preview)
+│   │   ├── router/index.js       # Configuration Vue Router
+│   │   ├── services/api.js       # Appels REST avec Axios
+│   │   └── main.js
+│   ├── Dockerfile
+│   └── vite.config.js
+│
+├── Backend/                      # API Express
+│   ├── routes/api.js             # Routes de l'API
+│   ├── prisma/schema.prisma      # Schéma base de données
+│   ├── lib/prisma.js             # Client Prisma
+│   ├── app.js                    # Point d'entrée
+│   └── Dockerfile
+│
+└── .github/
+    └── workflows/
+        ├── front.yml             # CI/CD Front (tests + deploy)
+        └── back.yml              # CI/CD Back (deploy)
+```
+
+---
+
 ## Ressources internes
 
 | Ressource         | Fait |
