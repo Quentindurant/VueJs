@@ -1,0 +1,15 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "../generated/prisma"
+}
+
+datasource db {
+    provider = "sqlite"
+}
+
+model Course {
+    id         Int    @id @default(autoincrement())
+    title      String
+    price      Float
+    instructor String
+}

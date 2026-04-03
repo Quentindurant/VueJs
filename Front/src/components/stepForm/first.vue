@@ -1,8 +1,11 @@
 <template>
     <div class="step">
-        <p>Step 1</p>
-        <input type="text" placeholder="Name">
-        <input type="text" placeholder="Email">
-        <input type="text" placeholder="Phone">
+        <p>nom du produit?</p>
+        <input type="text" placeholder="title" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)">
     </div>
 </template>
+
+<script setup>
+defineProps(['modelValue'])
+defineEmits(['update:modelValue'])
+</script>

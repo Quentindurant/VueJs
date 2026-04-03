@@ -1,8 +1,8 @@
 <template>
     <Menubar>
         <nav>
-            <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/about">About</RouterLink>
+            <RouterLink to="/">Accueil</RouterLink>
+            <RouterLink to="/preview">Preview</RouterLink>
             <RouterLink to="/contact">Contact</RouterLink>
         </nav>
     </Menubar>

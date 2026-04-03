@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/partials/header.vue'
 import Footer from './components/partials/footer.vue'
 import Navbar from './components/partials/navbar.vue'
-import Form from './components/form.vue'
+
 </script>
 
 <template>
@@ -11,7 +11,7 @@ import Form from './components/form.vue'
     <Navbar />
     
       <RouterView />
-      <Form />
+
   <Footer />
 </template>
 
