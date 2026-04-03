@@ -25,7 +25,9 @@ jobs:
           script: |
             set -e
 
+            APP_NAME="vuejs-back"
             APP_DIR="/var/www/html/api.quentindurant.com"
+            PORT=3000
 
             echo "──────────────────────────────────────────"
             echo "  📥  Pull des dernières modifications"
@@ -36,15 +38,33 @@ jobs:
             git pull origin main
 
             echo "──────────────────────────────────────────"
-            echo "  📦  Installation des dépendances"
+            echo "  🐳  Rebuild de l'image Docker"
             echo "──────────────────────────────────────────"
-            cd Backend
-            npm install --production
+            sudo docker build -t "${APP_NAME}:latest" ./Backend
 
             echo "──────────────────────────────────────────"
-            echo "  ♻️   Redémarrage via PM2"
+            echo "  ♻️   Redémarrage du conteneur"
             echo "──────────────────────────────────────────"
-            npx pm2 reload ecosystem.config.js --env production || npx pm2 start ecosystem.config.js --env production
-            npx pm2 save
+            sudo docker stop "$APP_NAME" || true
+            sudo docker rm   "$APP_NAME" || true
+            sudo docker run -d \
+              --restart unless-stopped \
+              --name "$APP_NAME" \
+              -p ${PORT}:3000 \
+              -e NODE_ENV=production \
+              "${APP_NAME}:latest"
+
+            echo "──────────────────────────────────────────"
+            echo "  🔁  Health check"
+            echo "──────────────────────────────────────────"
+            sleep 5
+            HTTP=$(curl -sk -o /dev/null -w "%{http_code}" "http://127.0.0.1:${PORT}/api" || echo "000")
+            if [[ "$HTTP" =~ ^(200|301|302|304|404)$ ]]; then
+              echo "  ✅  Health check OK — HTTP $HTTP"
+            else
+              echo "  ⚠️   Health check a échoué (Code: $HTTP)"
+              sudo docker logs "$APP_NAME"
+              exit 1
+            fi
 
             echo "  ✅  Déploiement Back terminé !"
