@@ -4,7 +4,7 @@ import Form from '../components/form.vue'
 
 <template>
   <main>
-    <h1>Creation de super produit de la mort qui tue</h1>
+    <h1>Creation de super produit de la mort qui tue fort</h1>
     <Form />
   </main>
 </template>
