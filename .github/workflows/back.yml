@@ -26,7 +26,7 @@ jobs:
             set -e
 
             APP_NAME="vuejs-back"
-            APP_DIR="/var/www/html/api.quentindurant.com"
+            APP_DIR="/var/www/html/vuejs.quentindurant.com"
             PORT=3000
 
             echo "──────────────────────────────────────────"
