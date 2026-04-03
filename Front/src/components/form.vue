@@ -1,20 +1,42 @@
 
 <template>
-    <div class="steps">
-        <Card>
-            <Transition>
-                <component :is="steps[currentStep].component" v-model="formData[steps[currentStep].field]" />
-            </Transition>
-            <Button @click="previousStep" :disabled="currentStep === 0">Previous</Button>
-            <Button v-if="currentStep < steps.length - 1" @click="nextStep">Next</Button>
-            <Button v-else @click="submit">Envoyer</Button>
-        </Card>
+  <div class="max-w-lg mx-auto">
+    <!-- Step indicators -->
+    <div class="flex items-center justify-center gap-2 mb-6">
+      <template v-for="(step, index) in steps" :key="step.name">
+        <div
+          :class="[
+            'h-2 w-2 rounded-full transition-colors',
+            index === currentStep ? 'bg-primary' : index < currentStep ? 'bg-primary/40' : 'bg-border'
+          ]"
+        />
+        <div v-if="index < steps.length - 1" class="h-px w-8 bg-border" />
+      </template>
     </div>
+
+    <Card class="p-0">
+      <CardHeader>
+        <CardTitle class="text-base font-medium text-muted-foreground">
+          Étape {{ currentStep + 1 }} / {{ steps.length }}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Transition>
+          <component :is="steps[currentStep].component" v-model="formData[steps[currentStep].field]" />
+        </Transition>
+      </CardContent>
+      <CardFooter class="justify-between gap-2">
+        <Button variant="outline" @click="previousStep" :disabled="currentStep === 0">Précédent</Button>
+        <Button v-if="currentStep < steps.length - 1" @click="nextStep">Suivant</Button>
+        <Button v-else @click="submit">Publier</Button>
+      </CardFooter>
+    </Card>
+  </div>
 </template>
 <style scoped>
     .v-enter-active,
     .v-leave-active {
-        transition: opacity 0.5s ease;
+        transition: opacity 0.3s ease;
     }
 
     .v-enter-from,
@@ -27,7 +49,7 @@
     import First from './stepForm/first.vue'
     import Second from './stepForm/second.vue'
     import Third from './stepForm/third.vue'
-    import { Card } from './ui/card'
+    import { Card, CardHeader, CardContent, CardFooter, CardTitle } from './ui/card'
     import { Button } from './ui/button'
 
     const steps = [

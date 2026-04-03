@@ -3,8 +3,11 @@ import Form from '../components/form.vue'
 </script>
 
 <template>
-  <main>
-    <h1>Creation de super produit de la mort qui tue fort</h1>
+  <div class="max-w-5xl mx-auto px-6 py-12">
+    <div class="mb-8 text-center">
+      <h1 class="text-3xl font-bold tracking-tight">Créer un cours</h1>
+      <p class="mt-2 text-muted-foreground">Remplissez les étapes pour publier votre cours.</p>
+    </div>
     <Form />
-  </main>
+  </div>
 </template>
