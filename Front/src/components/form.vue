@@ -60,6 +60,14 @@
 
     const currentStep = ref(0)
 
+    const permission = await Notification.requestPermission()
+    if (Notification.permission === 'granted') {
+        new Notification('Produit créé !', {
+            body: `"${formData.title}" a bien été publié.`,
+            icon: '/favicon.ico', 
+        })
+    }
+
     const formData = reactive({
         title: '',
         price: '',
@@ -82,12 +90,23 @@
             })
             const data = await res.json()
             if (!res.ok) throw new Error(data.error)
-            alert('Cours créé !')
+
+            if (Notification.permission === 'default') {
+                new Notification.requestPermission()
+            }
+            if (Notification.permission === 'granted') {
+                new Notification('Produit créé !', {
+                    body: `"${formData.title}" a bien été publié.`,
+                })
+            }
+                
             formData.title = ''
             formData.price = ''
             formData.instructor = ''
             currentStep.value = 0
         } catch (err) {
+            new Notification('Erreur', { body: err.message }) // si permission accordée
+            // fallback au cas oùùùùùù
             alert('Erreur : ' + err.message)
         }
     }
