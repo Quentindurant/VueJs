@@ -1,8 +1,8 @@
 <template>
   <div class="space-y-3">
     <div>
-      <label class="text-sm font-medium leading-none">Instructeur</label>
-      <p class="text-sm text-muted-foreground mt-1">Nom de la personne qui donne le cours.</p>
+      <label class="text-sm font-medium leading-none">Description</label>
+      <p class="text-sm text-muted-foreground mt-1">décris ton produit</p>
     </div>
     <input
       type="text"
