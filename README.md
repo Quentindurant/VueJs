@@ -1,45 +1,57 @@
-# VueJs
+# VueJS — Application Web
 
-This template should help get you started developing with Vue 3 in Vite.
+> Projet utilisant Vue.js en **Composition API**.
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Fonctionnalités réalisées
 
-## Recommended Browser Setup
+### Composant NavBar
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- J'ai utilisé Vue Router pour la navigation avec `RouterLink`. (`src/components/partials/navbar.vue`)
 
-## Customize configuration
+### Bibliothèque de composants
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- J'ai utilisé Shadcn UI. On le voit notamment avec les Cards et Button dans `Form.vue`.
 
-## Project Setup
+### Formulaire multi-étapes
 
-```sh
-npm install
-```
+- Formulaire en 3 étapes avec possibilité de revenir en arrière. (`src/components/form.vue`)
 
-### Compile and Hot-Reload for Development
+### Transitions entre les pages
 
-```sh
-npm run dev
-```
+- Transition appliquée entre les étapes du formulaire. (`src/components/form.vue`)
 
-### Compile and Minify for Production
+### API REST
 
-```sh
-npm run build
-```
+- J'ai refait une API avec Express dans le backend et j'ai essayé d'utiliser Axios pour les appels REST.
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Tests
 
-```sh
-npm run test:unit
-```
-# VueJs
+- J'ai utilisé Vitest. (`src/components/__tests__/form.spec.js`)
+
+### CI/CD sur VPS
+
+- CI/CD fait à l'aide de l'IA. Workflows dans `.github/workflows/back.yml` et `front.yml`.
+- Les deux se connectent au VPS en SSH, font un `git pull`, rebuild l'image Docker, redémarrent le conteneur et vérifient que ça répond.
+- Le Front est déclenché seulement si les tests passent.
+
+---
+
+## Ressources internes
+
+| Ressource         | Fait |
+| ----------------- | ---- |
+| Stockage interne  | ❌   |
+| Notification      | ✅   |
+| Nombre d'alertes  | ❌   |
+| Partage           | ❌   |
+| Contact Picker    | ❌   |
+| Géolocalisation   | ❌   |
+| Touch event       | ❌   |
+
+---
+
+## Docker
+
+Le tout est conteneurisé et déployé sur mon VPS.
